@@ -1,0 +1,83 @@
+/* === Navbar Styles === */
+nav.navbar {
+    background-color: #f8f9fa; /* Couleur claire */
+    transition: all 0.3s ease;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    padding: 10px 20px; /* Espacement interne */
+}
+
+nav .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Espacement entre les lettres */
+    transition: color 0.3s ease;
+}
+
+nav .navbar-brand:hover {
+    color: #5d8fae; /* Couleur secondaire au survol */
+}
+
+nav .navbar-toggler {
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+nav .navbar-toggler:hover {
+    transform: scale(1.1);
+}
+
+.navbar-toggler-icon {
+    filter: invert(20%);
+}
+
+/* === Navigation Links === */
+.navbar-nav .nav-link {
+    position: relative;
+    padding: 5px 10px; /* Marges réduites pour un design plus compact */
+    font-size: 1rem;
+    font-weight: 500; /* Poids du texte */
+    color: var(--dark-color);
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* Ligne animée sous les liens */
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 50%;
+}
+
+/* === Lien Actif === */
+
+.navbar-nav .nav-link.active::after {
+    width: 80%;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+    nav .navbar-nav .nav-link {
+        display: block; /* Liens sur une nouvelle ligne */
+        text-align: center; /* Centrage du texte */
+        padding: 5px;
+    }
+
+    nav .navbar-nav .nav-link::after {
+        bottom: -1px; /* Ajustement de la position de la ligne sous le texte */
+    }
+}

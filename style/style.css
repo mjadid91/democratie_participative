@@ -1,0 +1,170 @@
+/* === Réinitialisation de base === */
+body {
+    min-height: 100vh; /* Assure que la page occupe toute la hauteur */
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+main {
+    flex: 1; /* Le contenu principal occupe l'espace disponible */
+}
+
+footer {
+    background-color: #1c2331;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.2); /* Ajoute un effet d'ombre au footer */
+}
+
+/* === Styles spécifiques au main.php === */
+
+/* Section de bienvenue */
+.welcome-section {
+    background: linear-gradient(rgba(0, 123, 255, 0.6), rgba(0, 157, 255, 0.77)), url('https://source.unsplash.com/1600x900/?community,democracy') center/cover no-repeat;
+    color: #ffffff;
+    padding: 80px 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.welcome-section h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.welcome-section p {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 1.8rem;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-section .btn {
+    font-size: 1.1rem;
+    padding: 12px 40px;
+    border-radius: 50px;
+    margin: 0 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Boutons de la section de bienvenue */
+.welcome-section .btn-light {
+    background-color: #f8f9fa; /* Fond gris clair */
+    color: #072c6d; /* Texte bleu foncé */
+    border: 2px solid transparent;
+    transition: all 0.3s ease; /* Transition fluide pour les effets */
+}
+
+.welcome-section .btn-light:hover {
+    background-color: rgb(0, 0, 0); /* Couleur verte au survol */
+    color: white; /* Texte blanc */
+    border-color: rgb(17, 0, 0); /* Bordure verte */
+}
+
+.welcome-section .btn-dark {
+    background-color: #072c6d; /* Fond bleu foncé */
+    color: white; /* Texte blanc */
+    border: 2px solid transparent;
+    transition: all 0.3s ease; /* Transition fluide pour les effets */
+}
+
+.welcome-section .btn-dark:hover {
+    background-color: #110000; /* Couleur bleu plus clair au survol */
+    color: white; /* Texte blanc */
+    border-color: #36449e; /* Bordure assortie */
+}
+
+
+.welcome-section .btn-outline-light {
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background: transparent;
+}
+
+.welcome-section .btn-outline-light:hover {
+    color: #007bff;
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+/* === Animations === */
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hover-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-lg {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-lg:hover {
+    background-color: #0a067c;
+    transform: translateY(-3px);
+}
+
+.btn-lg:active {
+    transform: translateY(0);
+}
+
+/* Ombre sur les boutons */
+.btn-light:hover, .btn-dark:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* === Section "témoignages" ou autre contenu personnalisé === */
+.testimonials {
+    background: #f8f9fa;
+    padding: 40px 0;
+    border-radius: 10px;
+}
+
+/* === Responsiveness === */
+@media (max-width: 768px) {
+    .welcome-section h1 {
+        font-size: 2.2rem;
+    }
+    .welcome-section p {
+        font-size: 1.1rem;
+    }
+    .btn {
+        width: 100%;
+        padding: 10px 0;
+        margin-bottom: 10px;
+    }
+}
+
+.info-card {
+    height: 100%; /* Permet d'étendre les cartes à la hauteur maximale */
+    display: flex;
+    flex-direction: column; /* Organise le contenu verticalement */
+    justify-content: space-between; /* Espace entre le contenu principal et le bas */
+}
