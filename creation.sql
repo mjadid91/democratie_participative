@@ -46,8 +46,6 @@ CREATE TABLE proposition
     FOREIGN KEY(loginUtilisateur) REFERENCES utilisateur (loginUtilisateur)
 );
 
-
-
 CREATE TABLE decisionbudgetaire (
     IDDecision INT AUTO_INCREMENT,
     IDProposition INT NOT NULL,
@@ -58,7 +56,6 @@ CREATE TABLE decisionbudgetaire (
     FOREIGN KEY(IDProposition) REFERENCES proposition (IDProposition),
     FOREIGN KEY(loginUtilisateur) REFERENCES utilisateur (loginUtilisateur)
 );
-
 
 CREATE TABLE vote (
     IDVote INT AUTO_INCREMENT,
@@ -115,7 +112,6 @@ CREATE TABLE role_dans_groupe(
     FOREIGN KEY(IDRole) REFERENCES role (IDRole)
 );
 
-
 CREATE TABLE vote_utilisateur (
     loginUtilisateur VARCHAR(50),
     IDProposition INT,
@@ -152,16 +148,14 @@ CREATE TABLE commentaire_proposition(
 );
 
 CREATE TABLE envoie_reaction (
-                                 IDCommentaire INT NOT NULL,
-                                 IDReaction INT NOT NULL,
-                                 loginUtilisateur VARCHAR(50) NOT NULL,
-                                 PRIMARY KEY (IDCommentaire, IDReaction, loginUtilisateur),
-                                 FOREIGN KEY (IDCommentaire) REFERENCES commentaire(IDCommentaire) ON DELETE CASCADE,
-                                 FOREIGN KEY (IDReaction) REFERENCES reaction(IDReaction) ON DELETE CASCADE,
-                                 FOREIGN KEY (loginUtilisateur) REFERENCES utilisateur(loginUtilisateur) ON DELETE CASCADE
+    IDCommentaire INT NOT NULL,
+    IDReaction INT NOT NULL,
+    loginUtilisateur VARCHAR(50) NOT NULL,
+    PRIMARY KEY (IDCommentaire, IDReaction, loginUtilisateur),
+    FOREIGN KEY (IDCommentaire) REFERENCES commentaire(IDCommentaire) ON DELETE CASCADE,
+    FOREIGN KEY (IDReaction) REFERENCES reaction(IDReaction) ON DELETE CASCADE,
+    FOREIGN KEY (loginUtilisateur) REFERENCES utilisateur(loginUtilisateur) ON DELETE CASCADE
 );
-
-
 
 CREATE TABLE commentaire_signalement(
     IDSignalement INT,
