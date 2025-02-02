@@ -89,65 +89,6 @@ class controleurInvitation {
         }
     }
 
-
-    public static function envoyerInvitation() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $emailInvite = htmlspecialchars(trim($_POST['email']));
-            $IDGroupe = intval($_POST['IDGroupe']);
-            $loginUtilisateur = $_SESSION['utilisateur']->get('loginUtilisateur');
-
-            // Vérifiez si l'invitation existe déjà
-            $sql = "SELECT COUNT(*) FROM invitation WHERE emailInvite = :email AND IDGroupe = :IDGroupe AND statutInvitation = 'En attente'";
-            $stmt = Connexion::pdo()->prepare($sql);
-            $stmt->execute([':email' => $emailInvite, ':IDGroupe' => $IDGroupe]);
-            $invitationExistante = $stmt->fetchColumn();
-
-            if ($invitationExistante > 0) {
-                $_SESSION['msgInvitationExistant'] = "Une invitation est déjà en attente pour cet email.";
-                header("Location: routeur.php?page=propositions&action=afficherPropositions&IDGroupe=$IDGroupe");
-                return;
-            }
-
-            try {
-                // Insérer l'invitation via le modèle
-                $IDInvitation = invitation::insererInvitation($emailInvite, $IDGroupe, $loginUtilisateur);
-
-                // Générer le lien d'acceptation
-                $nomGroupe = groupe::getOne($IDGroupe)->get('nomGroupe');
-                $lienAcceptation = "http://localhost/web_test/routeur.php?page=invitation&action=accepter&IDInvitation=$IDInvitation";
-
-                // Préparer l'email
-                $sujet = "Invitation à rejoindre le groupe \"$nomGroupe\"";
-                $message = "
-                Bonjour,
-                
-                Vous avez été invité par $loginUtilisateur à rejoindre le groupe \"$nomGroupe\" sur notre plateforme.
-                
-                Veuillez cliquer sur le lien suivant pour accepter ou refuser l'invitation :
-                $lienAcceptation
-                
-                Merci,
-                L'équipe de la plateforme
-            ";
-                $headers = "From: med.jadid@hotmail.com\r\n";
-                $headers .= "Reply-To: med.jadid@hotmail.com\r\n";
-                $headers .= "Content-type: text/plain; charset=UTF-8\r\n";
-
-                // Envoyer l'email
-                if (mail($emailInvite, $sujet, $message, $headers)) {
-                    $_SESSION['msgInvitationEnvoyee'] = "Invitation envoyée avec succès à $emailInvite.";
-                    header("Location: routeur.php?page=propositions&action=afficherPropositions&IDGroupe=$IDGroupe");
-                } else {
-                    $_SESSION['msgNonEnvoyee'] = "L'invitation n'a pas pu être envoyée. Veuillez réessayer.";
-                    header("Location: routeur.php?page=propositions&action=afficherPropositions&IDGroupe=$IDGroupe");
-                }
-            } catch (Exception $e) {
-                echo "<p class='alert alert-danger'>Erreur : {$e->getMessage()}</p>";
-            }
-        }
-    }
-
-
     // Méthode pour traiter une invitation
     public static function accepterInvitation() {
         if (!isset($_GET['IDInvitation'])) {
